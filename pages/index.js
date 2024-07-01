@@ -7,6 +7,8 @@ export default function HomePage() {
   const [account, setAccount] = useState(undefined);
   const [atm, setATM] = useState(undefined);
   const [balance, setBalance] = useState(undefined);
+  const [value, setValue] = useState('');
+  const [transacCnt, setTransacCnt] = useState(0);
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const atmABI = atm_abi.abi;
@@ -90,12 +92,36 @@ export default function HomePage() {
       getBalance();
     }
 
+    const transferCurrency = async() => {
+      if (atm) {
+        let tx = await atm.TransferCurrency(1);
+        await tx.wait();
+        getBalance();
+      }
+    }
+
+    const txCount = async() => {
+      if (atm) {
+        let tx = await atm.transactionCount();
+        setTransacCnt(tx.toString());
+      }
+    }
+
     return (
       <div>
         <p>Your Account: {account}</p>
         <p>Your Balance: {balance}</p>
         <button onClick={deposit}>Deposit 1 ETH</button>
         <button onClick={withdraw}>Withdraw 1 ETH</button>
+        <br />
+        <br />
+        <label htmlFor="submit">Address To:</label>
+        <input type="text" placeholder="Enter the address you want to send to" value = {value} onChange={(e) => setValue(e.target.value)}/>
+        <button onClick={transferCurrency}>Send 1 ETH</button>
+        <br />
+        <br />
+        <p>Transaction Count: {transacCnt}</p>
+        <button onClick={txCount}>Get Transaction Count</button>
       </div>
     )
   }

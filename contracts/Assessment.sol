@@ -6,32 +6,31 @@ pragma solidity ^0.8.9;
 contract Assessment {
     address payable public owner;
     uint256 public balance;
+    uint256 public trasactionCount;
 
     event Deposit(uint256 amount);
     event Withdraw(uint256 amount);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the contract owner");
+        _;
+    }
 
     constructor(uint initBalance) payable {
         owner = payable(msg.sender);
         balance = initBalance;
     }
 
-    function getBalance() public view returns(uint256){
+    function getBalance() public view returns (uint256) {
         return balance;
     }
 
-    function deposit(uint256 _amount) public payable {
+    function deposit(uint256 _amount) public payable onlyOwner {
+        require(_amount > 0, "Deposit amount should be greater than 0");
         uint _previousBalance = balance;
-
-        // make sure this is the owner
-        require(msg.sender == owner, "You are not the owner of this account");
-
-        // perform transaction
         balance += _amount;
-
-        // assert transaction completed successfully
+        trasactionCount++;
         assert(balance == _previousBalance + _amount);
-
-        // emit the event
         emit Deposit(_amount);
     }
 
@@ -50,11 +49,24 @@ contract Assessment {
 
         // withdraw the given amount
         balance -= _withdrawAmount;
+        trasactionCount++;
 
         // assert the balance is correct
         assert(balance == (_previousBalance - _withdrawAmount));
 
         // emit the event
         emit Withdraw(_withdrawAmount);
+    }
+
+    function TransferCurrency(uint256 _amount) public onlyOwner {
+        require(_amount > 0, "Transfer amount should be greater than 0");
+        uint _previousBalance = balance;
+        balance -= _amount;
+        trasactionCount++;
+        assert(balance == (_previousBalance - _amount));
+    }
+
+    function transactionCount() public view returns (uint256) {
+        return trasactionCount;
     }
 }
