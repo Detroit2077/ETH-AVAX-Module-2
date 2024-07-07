@@ -8,7 +8,7 @@ export default function HomePage() {
   const [atm, setATM] = useState(undefined);
   const [balance, setBalance] = useState(undefined);
   const [value, setValue] = useState('');
-  const [transacCnt, setTransacCnt] = useState(0);
+  const [transacCnt, setTransacCnt] = useState('');
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const atmABI = atm_abi.abi;
