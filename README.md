@@ -2,7 +2,7 @@
 
 ## Description:
 
-* The repository contains a solidity contract working with a live frontend and communication between the platforms. Additional functionality contains functions like transfer 1 Ether a specific address and transaction count to count all transaction during the run time.
+- The repository contains a solidity contract working with a live frontend and communication between the platforms. Additional functionality contains functions like transfer 1 Ether a specific address and transaction count to count all transaction during the run time.
 
 ## Installation
 
@@ -23,4 +23,4 @@ After cloning the github, you will want to do the following to get the code runn
 After this, the project will be running on your localhost.
 Typically at `http://localhost:3000/`
 
-And now, perform different operation and analyze the funtions.
+And now, perform different operations and analyze all the functions.
