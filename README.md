@@ -6,13 +6,15 @@
 
 ## Installation/Executioin
 
+- You must have metamask wallet as a extension to your browser
+
 - Clone the repository by
 
 ```sh
     > git clone https://github.com/Detroit2077/ETH-AVAX-Module-2.git
 ```
 
-After cloning the github, you will want to do the following to get the code running on your computer.
+After cloning the github, you will want to do the following to get the code running on your local device.
 
 1. Inside the project directory, in the terminal type: `npm i`
 2. Open two additional terminals in your VS code
@@ -23,16 +25,16 @@ After cloning the github, you will want to do the following to get the code runn
 After this, the project will be running on your localhost.
 Typically at `http://localhost:3000/`
 
-And now, perform different operations and analyze all the functions.
+Now you can perform different operations and analyze the functions used in the Project.
 
 ## Help
 
-In case any problem or error occurs, make sure you are in the project directory and executed all the command as mentioned above.
+In case any problem or error occurs, check if your are in the project directory and executed all the command as mentioned above.
 
-Another thing to keep in mind before execution is to `clear all activity tab data` through metamask wallet.
+Another thing to keep in mind before execution is to `clear all activity tab data` through metamask wallet available in `setting` option.
 
 ```sh
-For additional help, you can even refer Hardhat, ReactJs or Solidity documentation
+For additional help, you can even refer Hardhat, ReactJs, Metamask or Solidity documentation
 ```
 
 ## Contributors Details
