@@ -6,7 +6,7 @@
 
 ## Installation/Executioin
 
-- You must have metamask wallet as a extension to your browser
+- You must have to install metamask wallet as a extension to your browser.
 
 - Clone the repository by
 
