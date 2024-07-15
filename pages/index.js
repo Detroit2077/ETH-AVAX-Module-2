@@ -8,6 +8,7 @@ export default function HomePage() {
   const [atm, setATM] = useState(undefined);
   const [balance, setBalance] = useState(undefined);
   const [value, setValue] = useState('');
+  const [stakeCurr, setStakeCurr] = useState(0);
   const [transacCnt, setTransacCnt] = useState('');
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -92,11 +93,12 @@ export default function HomePage() {
       getBalance();
     }
 
-    const transferCurrency = async() => {
+    const stakeCurrency = async() => {
       if (atm) {
-        let tx = await atm.TransferCurrency(1);
+        let tx = await atm.stakeCurrency(value);
         await tx.wait();
         getBalance();
+        setStakeCurr((prev) => prev + parseInt(value));
       }
     }
 
@@ -115,9 +117,9 @@ export default function HomePage() {
         <button onClick={withdraw}>Withdraw 1 ETH</button>
         <br />
         <br />
-        <label htmlFor="submit">Address To:</label>
-        <input type="text" placeholder="Enter the address you want to send to" value = {value} onChange={(e) => setValue(e.target.value)}/>
-        <button onClick={transferCurrency}>Send 1 ETH</button>
+        <input type="number" value = { value } onChange={(e) => setValue(e.target.value)} placeholder="Enter the amount:"/>
+        <button onClick={stakeCurrency}>Stake Your Currency</button>
+        <p>Stake Currency: {stakeCurr}</p>
         <br />
         <br />
         <p>Transaction Count: {transacCnt}</p>

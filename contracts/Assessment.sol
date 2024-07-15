@@ -7,6 +7,7 @@ contract Assessment {
     address payable public owner;
     uint256 public balance;
     uint256 public trasactionCount;
+    uint256 public stakeAmount;
 
     event Deposit(uint256 amount);
     event Withdraw(uint256 amount);
@@ -58,12 +59,11 @@ contract Assessment {
         emit Withdraw(_withdrawAmount);
     }
 
-    function TransferCurrency(uint256 _amount) public onlyOwner {
-        require(_amount > 0, "Transfer amount should be greater than 0");
-        uint _previousBalance = balance;
-        balance -= _amount;
-        trasactionCount++;
-        assert(balance == (_previousBalance - _amount));
+    function stakeCurrency(uint amount) public {
+        require(amount > 0, "Amount should be greater than 0");
+        require(balance >= amount, "Insufficient balance");
+        balance -= amount;
+        stakeAmount += amount;
     }
 
     function transactionCount() public view returns (uint256) {
